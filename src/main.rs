@@ -2,8 +2,8 @@ use image::Image;
 use image::color::Color;
 
 mod image;
-const WIDTH: usize = 5;
-const HEIGHT: usize = 5;
+const WIDTH: usize = 255;
+const HEIGHT: usize = 255;
 
 fn main() {
     let mut image = Image::new(WIDTH, HEIGHT);

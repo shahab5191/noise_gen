@@ -36,16 +36,15 @@ impl Image {
         if y > self.height {
             return Err(ImageErrors::OutOfBounds);
         }
-        println!("X: {}, Y: {}", x, y);
-        self.image_arr[x + y * x] = color;
+        self.image_arr[x + y * self.width] = color;
 
         Ok(())
     }
 
     pub fn save(&self) -> Result<(), ImageErrors> {
         let mut file = File::create(&self.save_address)?;
-        let mut header = String::from("P6\n".to_string());
-        header.push_str(&format!("{}\t{}\n", self.width, self.height));
+        let mut header = String::from("P6\n");
+        header.push_str(&format!("{} {}\n", self.width, self.height));
         header.push_str("255\n");
 
         file.write_all(header.as_bytes())?;
